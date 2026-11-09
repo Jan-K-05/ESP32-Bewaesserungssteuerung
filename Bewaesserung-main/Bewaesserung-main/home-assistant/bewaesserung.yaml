@@ -1,0 +1,1743 @@
+# ============================================================
+# BEWÄSSERUNGSSTEUERUNG
+# ============================================================
+#
+# Vorhandene Hardware-Entities:
+#
+# weather.forecast_home
+#
+# binary_sensor.bewasserung_regen_erkannt
+#
+# sensor.bewasserung_durchfluss
+# sensor.bewasserung_wassermenge_gesamt
+# sensor.bewasserung_wassertemperatur
+#
+# switch.bewasserung_ventil_1
+# ...
+# switch.bewasserung_ventil_8
+#
+# Die bereits vorhandenen UI-Helfer
+# input_boolean.sensoren
+# input_boolean.zeitschaltuhr
+# bleiben bestehen und werden hier NICHT erneut definiert.
+# ============================================================
+
+
+# ============================================================
+# 1. SCHALTER
+# ============================================================
+
+input_boolean:
+
+  # ----------------------------------------------------------
+  # Globale Einstellungen
+  # ----------------------------------------------------------
+
+  bewaesserungsautomatik:
+    name: Bewässerungsautomatik
+    icon: mdi:sprinkler-variant
+    initial: false
+
+  heute_uberspringen:
+    name: Heute überspringen
+    icon: mdi:calendar-remove
+    initial: false
+
+  regensperre_aktiv:
+    name: Regensperre aktiv
+    icon: mdi:weather-rainy
+    initial: true
+
+  durchflussuberwachung:
+    name: Durchflussüberwachung
+    icon: mdi:water-check
+    initial: true
+
+
+  # ----------------------------------------------------------
+  # Ventil 1
+  # ----------------------------------------------------------
+
+  ventil_1_automatik:
+    name: Ventil 1 Automatik
+
+  ventil_1_montag:
+    name: Ventil 1 Montag
+
+  ventil_1_dienstag:
+    name: Ventil 1 Dienstag
+
+  ventil_1_mittwoch:
+    name: Ventil 1 Mittwoch
+
+  ventil_1_donnerstag:
+    name: Ventil 1 Donnerstag
+
+  ventil_1_freitag:
+    name: Ventil 1 Freitag
+
+  ventil_1_samstag:
+    name: Ventil 1 Samstag
+
+  ventil_1_sonntag:
+    name: Ventil 1 Sonntag
+
+
+  # ----------------------------------------------------------
+  # Ventil 2
+  # ----------------------------------------------------------
+
+  ventil_2_automatik:
+    name: Ventil 2 Automatik
+
+  ventil_2_montag:
+    name: Ventil 2 Montag
+
+  ventil_2_dienstag:
+    name: Ventil 2 Dienstag
+
+  ventil_2_mittwoch:
+    name: Ventil 2 Mittwoch
+
+  ventil_2_donnerstag:
+    name: Ventil 2 Donnerstag
+
+  ventil_2_freitag:
+    name: Ventil 2 Freitag
+
+  ventil_2_samstag:
+    name: Ventil 2 Samstag
+
+  ventil_2_sonntag:
+    name: Ventil 2 Sonntag
+
+
+  # ----------------------------------------------------------
+  # Ventil 3
+  # ----------------------------------------------------------
+
+  ventil_3_automatik:
+    name: Ventil 3 Automatik
+
+  ventil_3_montag:
+    name: Ventil 3 Montag
+
+  ventil_3_dienstag:
+    name: Ventil 3 Dienstag
+
+  ventil_3_mittwoch:
+    name: Ventil 3 Mittwoch
+
+  ventil_3_donnerstag:
+    name: Ventil 3 Donnerstag
+
+  ventil_3_freitag:
+    name: Ventil 3 Freitag
+
+  ventil_3_samstag:
+    name: Ventil 3 Samstag
+
+  ventil_3_sonntag:
+    name: Ventil 3 Sonntag
+
+
+  # ----------------------------------------------------------
+  # Ventil 4
+  # ----------------------------------------------------------
+
+  ventil_4_automatik:
+    name: Ventil 4 Automatik
+
+  ventil_4_montag:
+    name: Ventil 4 Montag
+
+  ventil_4_dienstag:
+    name: Ventil 4 Dienstag
+
+  ventil_4_mittwoch:
+    name: Ventil 4 Mittwoch
+
+  ventil_4_donnerstag:
+    name: Ventil 4 Donnerstag
+
+  ventil_4_freitag:
+    name: Ventil 4 Freitag
+
+  ventil_4_samstag:
+    name: Ventil 4 Samstag
+
+  ventil_4_sonntag:
+    name: Ventil 4 Sonntag
+
+
+  # ----------------------------------------------------------
+  # Ventil 5
+  # ----------------------------------------------------------
+
+  ventil_5_automatik:
+    name: Ventil 5 Automatik
+
+  ventil_5_montag:
+    name: Ventil 5 Montag
+
+  ventil_5_dienstag:
+    name: Ventil 5 Dienstag
+
+  ventil_5_mittwoch:
+    name: Ventil 5 Mittwoch
+
+  ventil_5_donnerstag:
+    name: Ventil 5 Donnerstag
+
+  ventil_5_freitag:
+    name: Ventil 5 Freitag
+
+  ventil_5_samstag:
+    name: Ventil 5 Samstag
+
+  ventil_5_sonntag:
+    name: Ventil 5 Sonntag
+
+
+  # ----------------------------------------------------------
+  # Ventil 6
+  # ----------------------------------------------------------
+
+  ventil_6_automatik:
+    name: Ventil 6 Automatik
+
+  ventil_6_montag:
+    name: Ventil 6 Montag
+
+  ventil_6_dienstag:
+    name: Ventil 6 Dienstag
+
+  ventil_6_mittwoch:
+    name: Ventil 6 Mittwoch
+
+  ventil_6_donnerstag:
+    name: Ventil 6 Donnerstag
+
+  ventil_6_freitag:
+    name: Ventil 6 Freitag
+
+  ventil_6_samstag:
+    name: Ventil 6 Samstag
+
+  ventil_6_sonntag:
+    name: Ventil 6 Sonntag
+
+
+  # ----------------------------------------------------------
+  # Ventil 7
+  # ----------------------------------------------------------
+
+  ventil_7_automatik:
+    name: Ventil 7 Automatik
+
+  ventil_7_montag:
+    name: Ventil 7 Montag
+
+  ventil_7_dienstag:
+    name: Ventil 7 Dienstag
+
+  ventil_7_mittwoch:
+    name: Ventil 7 Mittwoch
+
+  ventil_7_donnerstag:
+    name: Ventil 7 Donnerstag
+
+  ventil_7_freitag:
+    name: Ventil 7 Freitag
+
+  ventil_7_samstag:
+    name: Ventil 7 Samstag
+
+  ventil_7_sonntag:
+    name: Ventil 7 Sonntag
+
+
+  # ----------------------------------------------------------
+  # Ventil 8
+  # ----------------------------------------------------------
+
+  ventil_8_automatik:
+    name: Ventil 8 Automatik
+
+  ventil_8_montag:
+    name: Ventil 8 Montag
+
+  ventil_8_dienstag:
+    name: Ventil 8 Dienstag
+
+  ventil_8_mittwoch:
+    name: Ventil 8 Mittwoch
+
+  ventil_8_donnerstag:
+    name: Ventil 8 Donnerstag
+
+  ventil_8_freitag:
+    name: Ventil 8 Freitag
+
+  ventil_8_samstag:
+    name: Ventil 8 Samstag
+
+  ventil_8_sonntag:
+    name: Ventil 8 Sonntag
+
+
+# ============================================================
+# 2. ZAHLEN / GRENZWERTE
+# ============================================================
+
+input_number:
+
+  maximal_aktive_ventile:
+    name: Maximal aktive Ventile
+    icon: mdi:pipe-valve
+    min: 1
+    max: 4
+    step: 1
+    initial: 3
+    mode: slider
+
+
+  maximale_ventillaufzeit:
+    name: Maximale Ventillaufzeit
+    icon: mdi:timer-alert-outline
+    min: 5
+    max: 120
+    step: 5
+    initial: 60
+    unit_of_measurement: "min"
+    mode: box
+
+
+  regenmenge_grenzwert:
+    name: Regenmenge Grenzwert
+    icon: mdi:weather-pouring
+    min: 0
+    max: 30
+    step: 0.5
+    initial: 3
+    unit_of_measurement: "mm"
+    mode: box
+
+
+  regenwahrscheinlichkeit_grenzwert:
+    name: Regenwahrscheinlichkeit Grenzwert
+    icon: mdi:weather-rainy
+    min: 0
+    max: 100
+    step: 5
+    initial: 60
+    unit_of_measurement: "%"
+    mode: slider
+
+
+  regensperre_nachlauf:
+    name: Regensperre Nachlauf
+    icon: mdi:timer-sand
+    min: 0
+    max: 48
+    step: 1
+    initial: 12
+    unit_of_measurement: "h"
+    mode: box
+
+
+  minimaler_durchfluss:
+    name: Minimaler Durchfluss
+    icon: mdi:water-minus
+    min: 0
+    max: 50
+    step: 0.1
+    initial: 0.5
+    unit_of_measurement: "l/min"
+    mode: box
+
+
+  leck_grenzwert:
+    name: Leck Grenzwert
+    icon: mdi:water-alert
+    min: 0
+    max: 10
+    step: 0.1
+    initial: 0.3
+    unit_of_measurement: "l/min"
+    mode: box
+
+
+  # ----------------------------------------------------------
+  # Laufzeiten
+  # ----------------------------------------------------------
+
+  ventil_1_laufzeit:
+    name: Ventil 1 Laufzeit
+    min: 1
+    max: 120
+    step: 1
+    initial: 15
+    unit_of_measurement: "min"
+    mode: box
+
+  ventil_2_laufzeit:
+    name: Ventil 2 Laufzeit
+    min: 1
+    max: 120
+    step: 1
+    initial: 15
+    unit_of_measurement: "min"
+    mode: box
+
+  ventil_3_laufzeit:
+    name: Ventil 3 Laufzeit
+    min: 1
+    max: 120
+    step: 1
+    initial: 15
+    unit_of_measurement: "min"
+    mode: box
+
+  ventil_4_laufzeit:
+    name: Ventil 4 Laufzeit
+    min: 1
+    max: 120
+    step: 1
+    initial: 15
+    unit_of_measurement: "min"
+    mode: box
+
+  ventil_5_laufzeit:
+    name: Ventil 5 Laufzeit
+    min: 1
+    max: 120
+    step: 1
+    initial: 15
+    unit_of_measurement: "min"
+    mode: box
+
+  ventil_6_laufzeit:
+    name: Ventil 6 Laufzeit
+    min: 1
+    max: 120
+    step: 1
+    initial: 15
+    unit_of_measurement: "min"
+    mode: box
+
+  ventil_7_laufzeit:
+    name: Ventil 7 Laufzeit
+    min: 1
+    max: 120
+    step: 1
+    initial: 15
+    unit_of_measurement: "min"
+    mode: box
+
+  ventil_8_laufzeit:
+    name: Ventil 8 Laufzeit
+    min: 1
+    max: 120
+    step: 1
+    initial: 15
+    unit_of_measurement: "min"
+    mode: box
+
+
+# ============================================================
+# 3. ZEITEN
+# ============================================================
+
+input_datetime:
+
+  letzter_erkannter_regen:
+    name: Letzter erkannter Regen
+    icon: mdi:weather-rainy
+    has_date: true
+    has_time: true
+
+
+  ventil_1_startzeit:
+    name: Ventil 1 Startzeit
+    has_date: false
+    has_time: true
+
+  ventil_2_startzeit:
+    name: Ventil 2 Startzeit
+    has_date: false
+    has_time: true
+
+  ventil_3_startzeit:
+    name: Ventil 3 Startzeit
+    has_date: false
+    has_time: true
+
+  ventil_4_startzeit:
+    name: Ventil 4 Startzeit
+    has_date: false
+    has_time: true
+
+  ventil_5_startzeit:
+    name: Ventil 5 Startzeit
+    has_date: false
+    has_time: true
+
+  ventil_6_startzeit:
+    name: Ventil 6 Startzeit
+    has_date: false
+    has_time: true
+
+  ventil_7_startzeit:
+    name: Ventil 7 Startzeit
+    has_date: false
+    has_time: true
+
+  ventil_8_startzeit:
+    name: Ventil 8 Startzeit
+    has_date: false
+    has_time: true
+
+
+# ============================================================
+# 4. AUSWAHLFELDER
+# ============================================================
+
+input_select:
+
+  zeitschaltuhr_ventil:
+    name: Zeitschaltuhr Ventil
+    icon: mdi:clock-outline
+    options:
+      - Ventil 1
+      - Ventil 2
+      - Ventil 3
+      - Ventil 4
+      - Ventil 5
+      - Ventil 6
+      - Ventil 7
+      - Ventil 8
+
+
+  manuelles_ventil:
+    name: Manuelles Ventil
+    icon: mdi:pipe-valve
+    options:
+      - Ventil 1
+      - Ventil 2
+      - Ventil 3
+      - Ventil 4
+      - Ventil 5
+      - Ventil 6
+      - Ventil 7
+      - Ventil 8
+    initial: Ventil 1
+
+
+  manuelle_laufzeit:
+    name: Manuelle Laufzeit
+    icon: mdi:timer-outline
+    options:
+      - "5"
+      - "10"
+      - "15"
+      - "20"
+      - "30"
+      - "45"
+    initial: "15"
+
+
+# ============================================================
+# 5. TIMER FÜR DIE VENTILE
+# ============================================================
+
+timer:
+
+  bewaesserung_ventil_1:
+    name: Ventil 1 Restlaufzeit
+    restore: true
+
+  bewaesserung_ventil_2:
+    name: Ventil 2 Restlaufzeit
+    restore: true
+
+  bewaesserung_ventil_3:
+    name: Ventil 3 Restlaufzeit
+    restore: true
+
+  bewaesserung_ventil_4:
+    name: Ventil 4 Restlaufzeit
+    restore: true
+
+  bewaesserung_ventil_5:
+    name: Ventil 5 Restlaufzeit
+    restore: true
+
+  bewaesserung_ventil_6:
+    name: Ventil 6 Restlaufzeit
+    restore: true
+
+  bewaesserung_ventil_7:
+    name: Ventil 7 Restlaufzeit
+    restore: true
+
+  bewaesserung_ventil_8:
+    name: Ventil 8 Restlaufzeit
+    restore: true
+
+
+# ============================================================
+# 6. TEMPLATE-SENSOREN
+# ============================================================
+
+template:
+
+  # ----------------------------------------------------------
+  # Wetter alle 30 Minuten abrufen
+  # ----------------------------------------------------------
+
+  - triggers:
+
+      - trigger: homeassistant
+        event: start
+
+      - trigger: time_pattern
+        minutes: "/30"
+
+    actions:
+
+      - action: weather.get_forecasts
+        target:
+          entity_id: weather.forecast_home
+        data:
+          type: hourly
+        response_variable: wetter_vorhersage
+
+    sensor:
+
+      - name: "Bewässerung Regen nächste 6h"
+        unique_id: bewaesserung_regen_naechste_6h
+        icon: mdi:weather-pouring
+        unit_of_measurement: "mm"
+
+        state: >
+          {% set ns = namespace(regen=0) %}
+          {% for stunde in wetter_vorhersage['weather.forecast_home'].forecast[:6] %}
+            {% set ns.regen =
+              ns.regen +
+              (stunde.precipitation | default(0) | float(0))
+            %}
+          {% endfor %}
+          {{ ns.regen | round(1) }}
+
+
+      - name: "Bewässerung Regenwahrscheinlichkeit nächste 6h"
+        unique_id: bewaesserung_regenwahrscheinlichkeit_naechste_6h
+        icon: mdi:weather-rainy
+        unit_of_measurement: "%"
+
+        state: >
+          {% set ns = namespace(maximum=0) %}
+          {% for stunde in wetter_vorhersage['weather.forecast_home'].forecast[:6] %}
+
+            {% set p =
+              stunde.precipitation_probability
+              | default(0)
+              | float(0)
+            %}
+
+            {% if p > ns.maximum %}
+              {% set ns.maximum = p %}
+            {% endif %}
+
+          {% endfor %}
+
+          {{ ns.maximum | round(0) }}
+
+
+  # ----------------------------------------------------------
+  # Andere Sensoren
+  # ----------------------------------------------------------
+
+  - sensor:
+
+      - name: "Bewässerung aktive Ventile"
+        unique_id: bewaesserung_aktive_ventile
+        icon: mdi:pipe-valve
+
+        state: >
+          {{
+            [
+              states('switch.bewasserung_ventil_1'),
+              states('switch.bewasserung_ventil_2'),
+              states('switch.bewasserung_ventil_3'),
+              states('switch.bewasserung_ventil_4'),
+              states('switch.bewasserung_ventil_5'),
+              states('switch.bewasserung_ventil_6'),
+              states('switch.bewasserung_ventil_7'),
+              states('switch.bewasserung_ventil_8')
+            ]
+            | select('eq', 'on')
+            | list
+            | count
+          }}
+
+      # ------------------------------------------------------
+      # Verständliche Warnmeldungen für die Bewässerung
+      # ------------------------------------------------------
+
+      - name: "Bewässerung Warnstatus"
+        unique_id: bewaesserung_warnstatus
+        icon: >
+          {% if this.state | int(0) > 0 %}
+            mdi:alert-circle
+          {% else %}
+            mdi:check-circle
+          {% endif %}
+
+        state: >
+          {% set ns = namespace(anzahl=0) %}
+
+          {% for nr in range(1, 9) %}
+            {% set laufzeit =
+              states('input_number.ventil_' ~ nr ~ '_laufzeit')
+              | float(0)
+            %}
+            {% set maximum =
+              states('input_number.maximale_ventillaufzeit')
+              | float(0)
+            %}
+
+            {% if laufzeit > maximum %}
+              {% set ns.anzahl = ns.anzahl + 1 %}
+            {% endif %}
+
+            {% set tage = [
+              'montag',
+              'dienstag',
+              'mittwoch',
+              'donnerstag',
+              'freitag',
+              'samstag',
+              'sonntag'
+            ] %}
+
+            {% set tag_ns = namespace(aktiv=false) %}
+
+            {% for tag in tage %}
+              {% if is_state(
+                'input_boolean.ventil_' ~ nr ~ '_' ~ tag,
+                'on'
+              ) %}
+                {% set tag_ns.aktiv = true %}
+              {% endif %}
+            {% endfor %}
+
+            {% if
+              is_state(
+                'input_boolean.ventil_' ~ nr ~ '_automatik',
+                'on'
+              )
+              and not tag_ns.aktiv
+            %}
+              {% set ns.anzahl = ns.anzahl + 1 %}
+            {% endif %}
+          {% endfor %}
+
+
+          {% if
+            is_state('input_boolean.durchflussuberwachung', 'on')
+            and
+            states('sensor.bewasserung_durchfluss')
+            in ['unknown', 'unavailable', 'none', '']
+          %}
+            {% set ns.anzahl = ns.anzahl + 1 %}
+          {% endif %}
+
+
+          {% if
+            is_state('input_boolean.regensperre_aktiv', 'on')
+            and
+            (
+              states('sensor.bewasserung_regen_nachste_6h')
+              in ['unknown', 'unavailable', 'none', '']
+              or
+              states(
+                'sensor.bewasserung_regenwahrscheinlichkeit_nachste_6h'
+              )
+              in ['unknown', 'unavailable', 'none', '']
+            )
+          %}
+            {% set ns.anzahl = ns.anzahl + 1 %}
+          {% endif %}
+
+
+          {% if
+            is_state('input_boolean.regensperre_aktiv', 'on')
+            and
+            states('input_number.regenmenge_grenzwert')
+            | float(0) <= 0
+          %}
+            {% set ns.anzahl = ns.anzahl + 1 %}
+          {% endif %}
+
+
+          {% if
+            is_state('input_boolean.regensperre_aktiv', 'on')
+            and
+            states(
+              'input_number.regenwahrscheinlichkeit_grenzwert'
+            ) | float(0) < 20
+          %}
+            {% set ns.anzahl = ns.anzahl + 1 %}
+          {% endif %}
+
+
+          {% if
+            states('input_number.maximal_aktive_ventile')
+            | int(0) > 3
+          %}
+            {% set ns.anzahl = ns.anzahl + 1 %}
+          {% endif %}
+
+
+          {% if
+            states('input_select.manuelle_laufzeit') | int(0)
+            >
+            states('input_number.maximale_ventillaufzeit') | int(0)
+          %}
+            {% set ns.anzahl = ns.anzahl + 1 %}
+          {% endif %}
+
+
+          {{ ns.anzahl }}
+
+        attributes:
+
+          meldungen: >
+            {% set ns = namespace(meldungen=[]) %}
+
+            {% set maximum =
+              states('input_number.maximale_ventillaufzeit')
+              | int(45)
+            %}
+
+
+            {# ---------------------------------------------- #}
+            {# Laufzeit je Ventil                            #}
+            {# ---------------------------------------------- #}
+
+            {% for nr in range(1, 9) %}
+
+              {% set laufzeit =
+                states('input_number.ventil_' ~ nr ~ '_laufzeit')
+                | int(0)
+              %}
+
+              {% if laufzeit > maximum %}
+
+                {% set ns.meldungen = ns.meldungen + [
+                  'Ventil ' ~ nr ~
+                  ': Eingestellte Laufzeit von ' ~
+                  laufzeit ~
+                  ' Minuten überschreitet die maximale Laufzeit von ' ~
+                  maximum ~
+                  ' Minuten. Das Ventil wird spätestens nach ' ~
+                  maximum ~
+                  ' Minuten abgeschaltet.'
+                ] %}
+
+              {% endif %}
+
+
+              {# -------------------------------------------- #}
+              {# Automatik aktiviert, aber kein Wochentag    #}
+              {# -------------------------------------------- #}
+
+              {% set tage = [
+                'montag',
+                'dienstag',
+                'mittwoch',
+                'donnerstag',
+                'freitag',
+                'samstag',
+                'sonntag'
+              ] %}
+
+              {% set tag_ns = namespace(aktiv=false) %}
+
+              {% for tag in tage %}
+
+                {% if is_state(
+                  'input_boolean.ventil_' ~ nr ~ '_' ~ tag,
+                  'on'
+                ) %}
+                  {% set tag_ns.aktiv = true %}
+                {% endif %}
+
+              {% endfor %}
+
+
+              {% if
+                is_state(
+                  'input_boolean.ventil_' ~ nr ~ '_automatik',
+                  'on'
+                )
+                and not tag_ns.aktiv
+              %}
+
+                {% set ns.meldungen = ns.meldungen + [
+                  'Ventil ' ~ nr ~
+                  ': Die Automatik ist eingeschaltet, aber es wurde kein Wochentag ausgewählt. Dieses Ventil wird daher nicht automatisch gestartet.'
+                ] %}
+
+              {% endif %}
+
+            {% endfor %}
+
+
+            {# ---------------------------------------------- #}
+            {# Durchflusssensor                              #}
+            {# ---------------------------------------------- #}
+
+            {% if
+              is_state(
+                'input_boolean.durchflussuberwachung',
+                'on'
+              )
+              and
+              states('sensor.bewasserung_durchfluss')
+              in ['unknown', 'unavailable', 'none', '']
+            %}
+
+              {% set ns.meldungen = ns.meldungen + [
+                'Die Durchflussüberwachung ist eingeschaltet, aber der Durchflusssensor liefert aktuell keine gültigen Daten. Die Sicherheitsüberwachung kann dadurch nicht zuverlässig arbeiten.'
+              ] %}
+
+            {% endif %}
+
+
+            {# ---------------------------------------------- #}
+            {# Wetterdaten                                   #}
+            {# ---------------------------------------------- #}
+
+            {% if
+              is_state(
+                'input_boolean.regensperre_aktiv',
+                'on'
+              )
+              and
+              (
+                states(
+                  'sensor.bewasserung_regen_nachste_6h'
+                )
+                in ['unknown', 'unavailable', 'none', '']
+                or
+                states(
+                  'sensor.bewasserung_regenwahrscheinlichkeit_nachste_6h'
+                )
+                in ['unknown', 'unavailable', 'none', '']
+              )
+            %}
+
+              {% set ns.meldungen = ns.meldungen + [
+                'Die automatische Regensperre ist eingeschaltet, aber die Wettervorhersage ist nicht verfügbar. Die Entscheidung über eine wetterbedingte Sperre kann dadurch unvollständig sein.'
+              ] %}
+
+            {% endif %}
+
+
+            {# ---------------------------------------------- #}
+            {# Regenmenge Grenzwert                          #}
+            {# ---------------------------------------------- #}
+
+            {% if
+              is_state(
+                'input_boolean.regensperre_aktiv',
+                'on'
+              )
+              and
+              states(
+                'input_number.regenmenge_grenzwert'
+              ) | float(0) <= 0
+            %}
+
+              {% set ns.meldungen = ns.meldungen + [
+                'Der Grenzwert für die Regenmenge steht auf 0 mm. Dadurch kann bereits die kleinste Regenvorhersage die automatische Bewässerung sperren.'
+              ] %}
+
+            {% endif %}
+
+
+            {# ---------------------------------------------- #}
+            {# Regenwahrscheinlichkeit                       #}
+            {# ---------------------------------------------- #}
+
+            {% set regenwahrscheinlichkeit =
+              states(
+                'input_number.regenwahrscheinlichkeit_grenzwert'
+              ) | int(0)
+            %}
+
+            {% if
+              is_state(
+                'input_boolean.regensperre_aktiv',
+                'on'
+              )
+              and regenwahrscheinlichkeit < 20
+            %}
+
+              {% set ns.meldungen = ns.meldungen + [
+                'Der Grenzwert für die Regenwahrscheinlichkeit liegt bei nur ' ~
+                regenwahrscheinlichkeit ~
+                ' %. Dadurch kann die Bewässerung bereits bei einer sehr unsicheren Regenvorhersage gesperrt werden.'
+              ] %}
+
+            {% endif %}
+
+
+            {# ---------------------------------------------- #}
+            {# Mehr als 3 Ventile                            #}
+            {# ---------------------------------------------- #}
+
+            {% set max_ventile =
+              states(
+                'input_number.maximal_aktive_ventile'
+              ) | int(3)
+            %}
+
+            {% if max_ventile > 3 %}
+
+              {% set ns.meldungen = ns.meldungen + [
+                'Es sind bis zu ' ~
+                max_ventile ~
+                ' gleichzeitig aktive Ventile erlaubt. Die elektrische Anlage ist dafür ausgelegt, aber der verfügbare Wasserdruck und Durchfluss wurden für mehr als 3 Ventile noch nicht geprüft.'
+              ] %}
+
+            {% endif %}
+
+
+            {# ---------------------------------------------- #}
+            {# Manuelle Laufzeit                             #}
+            {# ---------------------------------------------- #}
+
+            {% set manuell =
+              states(
+                'input_select.manuelle_laufzeit'
+              ) | int(15)
+            %}
+
+            {% if manuell > maximum %}
+
+              {% set ns.meldungen = ns.meldungen + [
+                'Die ausgewählte manuelle Laufzeit beträgt ' ~
+                manuell ~
+                ' Minuten, das globale Sicherheitslimit liegt jedoch bei ' ~
+                maximum ~
+                ' Minuten. Eine manuelle Bewässerung wird daher spätestens nach ' ~
+                maximum ~
+                ' Minuten beendet.'
+              ] %}
+
+            {% endif %}
+
+
+            {{ ns.meldungen }}
+
+  - binary_sensor:
+
+      # ------------------------------------------------------
+      # Wetter sagt relevanten Regen voraus
+      # ------------------------------------------------------
+
+      - name: "Bewässerung Regen vorhergesagt"
+        unique_id: bewaesserung_regen_vorhergesagt
+        icon: mdi:weather-pouring
+
+        state: >
+          {{
+            states('sensor.bewasserung_regen_nachste_6h') | float(0)
+            >=
+            states('input_number.regenmenge_grenzwert') | float(3)
+
+            and
+
+            states(
+              'sensor.bewasserung_regenwahrscheinlichkeit_nachste_6h'
+            ) | float(0)
+            >=
+            states(
+              'input_number.regenwahrscheinlichkeit_grenzwert'
+            ) | float(60)
+          }}
+
+
+      # ------------------------------------------------------
+      # Nachlauf nach real erkanntem Regen
+      # ------------------------------------------------------
+
+      - name: "Bewässerung Regennachlauf"
+        unique_id: bewaesserung_regennachlauf
+        icon: mdi:timer-sand
+
+        state: >
+          {% set letzter =
+            states('input_datetime.letzter_erkannter_regen')
+          %}
+
+          {% if letzter not in ['unknown', 'unavailable', 'none', ''] %}
+
+            {% set letzter_dt = as_datetime(letzter) %}
+
+            {% set stunden =
+              states('input_number.regensperre_nachlauf')
+              | float(12)
+            %}
+
+            {{
+              now()
+              <
+              letzter_dt + timedelta(hours=stunden)
+            }}
+
+          {% else %}
+
+            false
+
+          {% endif %}
+
+
+      # ------------------------------------------------------
+      # Gesamte Regensperre
+      # ------------------------------------------------------
+
+      - name: "Bewässerung Regensperre"
+        unique_id: bewaesserung_regensperre
+        icon: mdi:sprinkler-variant-off
+
+        state: >
+          {{
+            is_state(
+              'binary_sensor.bewasserung_regen_erkannt',
+              'on'
+            )
+
+            or
+
+            is_state(
+              'binary_sensor.bewasserung_regen_vorhergesagt',
+              'on'
+            )
+
+            or
+
+            is_state(
+              'binary_sensor.bewasserung_regennachlauf',
+              'on'
+            )
+          }}
+
+
+      # ------------------------------------------------------
+      # Plausibilitätswarnung
+      #
+      # Sensor meldet real Regen, obwohl der Wetterdienst
+      # praktisch keinen Niederschlag erwartet.
+      # ------------------------------------------------------
+
+      - name: "Bewässerung Wetter Sensor Diskrepanz"
+        unique_id: bewaesserung_wetter_sensor_diskrepanz
+        icon: mdi:alert-circle-outline
+
+        state: >
+          {{
+            is_state(
+              'binary_sensor.bewasserung_regen_erkannt',
+              'on'
+            )
+
+            and
+
+            states(
+              'sensor.bewasserung_regen_nachste_6h'
+            ) | float(0) < 0.5
+          }}
+
+
+      # ------------------------------------------------------
+      # Zentrale Freigabe für automatische Bewässerung
+      # ------------------------------------------------------
+
+      - name: "Bewässerung erlaubt"
+        unique_id: bewaesserung_erlaubt
+
+        icon: >
+          {% if this.state == 'on' %}
+            mdi:check-circle
+          {% else %}
+            mdi:cancel
+          {% endif %}
+
+        state: >
+          {{
+            is_state(
+              'input_boolean.bewaesserungsautomatik',
+              'on'
+            )
+
+            and
+
+            not is_state(
+              'input_boolean.heute_uberspringen',
+              'on'
+            )
+
+            and
+
+            (
+              not is_state(
+                'input_boolean.regensperre_aktiv',
+                'on'
+              )
+
+              or
+
+              not is_state(
+                'binary_sensor.bewasserung_regensperre',
+                'on'
+              )
+            )
+          }}
+
+
+# ============================================================
+# 7. AUTOMATIONEN
+# ============================================================
+
+automation:
+
+  # ==========================================================
+  # REALEN REGEN SPEICHERN
+  # ==========================================================
+
+  - alias: "Bewässerung - Regen erkannt"
+    id: bewaesserung_regen_erkannt_speichern
+
+    triggers:
+
+      - trigger: state
+        entity_id: binary_sensor.bewasserung_regen_erkannt
+        to: "on"
+
+    actions:
+
+      - action: input_datetime.set_datetime
+        target:
+          entity_id: input_datetime.letzter_erkannter_regen
+        data:
+          datetime: >
+            {{ now().strftime('%Y-%m-%d %H:%M:%S') }}
+
+
+  # ==========================================================
+  # AUTOMATISCHE ZEITPLÄNE
+  # ==========================================================
+  #
+  # Die Automation wird zu den 8 einstellbaren Startzeiten
+  # aufgerufen.
+  #
+  # Danach wird geprüft:
+  #
+  # - globale Automatik aktiv?
+  # - Regensperre frei?
+  # - dieses Ventil Automatik aktiv?
+  # - heutiger Wochentag aktiv?
+  #
+  # Wenn bereits 3 Ventile laufen, wartet der Start.
+  # ==========================================================
+
+  - alias: "Bewässerung - Ventilzeitpläne"
+    id: bewaesserung_ventilzeitplaene
+
+    triggers:
+
+      - trigger: time
+        at: input_datetime.ventil_1_startzeit
+        id: "1"
+
+      - trigger: time
+        at: input_datetime.ventil_2_startzeit
+        id: "2"
+
+      - trigger: time
+        at: input_datetime.ventil_3_startzeit
+        id: "3"
+
+      - trigger: time
+        at: input_datetime.ventil_4_startzeit
+        id: "4"
+
+      - trigger: time
+        at: input_datetime.ventil_5_startzeit
+        id: "5"
+
+      - trigger: time
+        at: input_datetime.ventil_6_startzeit
+        id: "6"
+
+      - trigger: time
+        at: input_datetime.ventil_7_startzeit
+        id: "7"
+
+      - trigger: time
+        at: input_datetime.ventil_8_startzeit
+        id: "8"
+
+
+    variables:
+
+      nummer: "{{ trigger.id }}"
+
+      ventil_entity: >-
+        switch.bewasserung_ventil_{{ nummer }}
+
+      timer_entity: >-
+        timer.bewaesserung_ventil_{{ nummer }}
+
+      automatik_entity: >-
+        input_boolean.ventil_{{ nummer }}_automatik
+
+      laufzeit_entity: >-
+        input_number.ventil_{{ nummer }}_laufzeit
+
+      tag_entity: >-
+        {% set tage = {
+          0: 'montag',
+          1: 'dienstag',
+          2: 'mittwoch',
+          3: 'donnerstag',
+          4: 'freitag',
+          5: 'samstag',
+          6: 'sonntag'
+        } %}
+        input_boolean.ventil_{{ nummer }}_{{ tage[now().weekday()] }}
+
+      laufzeit_minuten: >
+        {{
+          [
+            states(laufzeit_entity) | int(15),
+            states('input_number.maximale_ventillaufzeit') | int(45)
+          ] | min
+        }}
+
+
+    conditions:
+
+      # globale Freigabe
+      - condition: state
+        entity_id: binary_sensor.bewasserung_erlaubt
+        state: "on"
+
+      # Automatik für dieses Ventil
+      - condition: template
+        value_template: >
+          {{ is_state(automatik_entity, 'on') }}
+
+      # heutiger Wochentag
+      - condition: template
+        value_template: >
+          {{ is_state(tag_entity, 'on') }}
+
+
+    actions:
+
+      # ------------------------------------------------------
+      # Warten, falls maximale Ventilzahl erreicht
+      # ------------------------------------------------------
+
+      - wait_template: >
+          {{
+            states('sensor.bewasserung_aktive_ventile') | int(0)
+            <
+            states('input_number.maximal_aktive_ventile') | int(3)
+          }}
+        timeout: "02:00:00"
+        continue_on_timeout: false
+
+
+      # ------------------------------------------------------
+      # Nach dem Warten noch einmal Regensperre prüfen
+      # ------------------------------------------------------
+
+      - condition: state
+        entity_id: binary_sensor.bewasserung_erlaubt
+        state: "on"
+
+
+      # ------------------------------------------------------
+      # Ventil öffnen
+      # ------------------------------------------------------
+
+      - action: switch.turn_on
+        target:
+          entity_id: "{{ ventil_entity }}"
+
+
+      # ------------------------------------------------------
+      # Timer mit eingestellter Laufzeit starten
+      # ------------------------------------------------------
+
+      - action: timer.start
+        target:
+          entity_id: "{{ timer_entity }}"
+        data:
+          duration: >
+            {{ laufzeit_minuten | int * 60 }}
+
+
+    mode: queued
+    max: 8
+
+
+  # ==========================================================
+  # TIMER ABGELAUFEN -> VENTIL AUS
+  # ==========================================================
+
+  - alias: "Bewässerung - Timer beendet"
+    id: bewaesserung_timer_beendet
+
+    triggers:
+
+      - trigger: event
+        event_type: timer.finished
+
+    variables:
+
+      timer_entity: "{{ trigger.event.data.entity_id }}"
+
+      ventil_entity: >
+        {% set mapping = {
+          'timer.bewaesserung_ventil_1':
+            'switch.bewasserung_ventil_1',
+          'timer.bewaesserung_ventil_2':
+            'switch.bewasserung_ventil_2',
+          'timer.bewaesserung_ventil_3':
+            'switch.bewasserung_ventil_3',
+          'timer.bewaesserung_ventil_4':
+            'switch.bewasserung_ventil_4',
+          'timer.bewaesserung_ventil_5':
+            'switch.bewasserung_ventil_5',
+          'timer.bewaesserung_ventil_6':
+            'switch.bewasserung_ventil_6',
+          'timer.bewaesserung_ventil_7':
+            'switch.bewasserung_ventil_7',
+          'timer.bewaesserung_ventil_8':
+            'switch.bewasserung_ventil_8'
+        } %}
+
+        {{ mapping.get(timer_entity, '') }}
+
+
+    conditions:
+
+      - condition: template
+        value_template: >
+          {{ ventil_entity != '' }}
+
+
+    actions:
+
+      - action: switch.turn_off
+        target:
+          entity_id: "{{ ventil_entity }}"
+
+
+  # ==========================================================
+  # MAXIMALE LAUFZEIT ALS NOTABSCHALTUNG
+  #
+  # Greift auch, wenn ein Ventil direkt im Dashboard
+  # eingeschaltet wurde.
+  # ==========================================================
+
+  - alias: "Bewässerung - Maximale Ventillaufzeit"
+    id: bewaesserung_maximale_ventillaufzeit
+
+    triggers:
+
+      - trigger: state
+        entity_id:
+          - switch.bewasserung_ventil_1
+          - switch.bewasserung_ventil_2
+          - switch.bewasserung_ventil_3
+          - switch.bewasserung_ventil_4
+          - switch.bewasserung_ventil_5
+          - switch.bewasserung_ventil_6
+          - switch.bewasserung_ventil_7
+          - switch.bewasserung_ventil_8
+        to: "on"
+
+
+    actions:
+
+      - delay:
+          minutes: >
+            {{
+              states(
+                'input_number.maximale_ventillaufzeit'
+              ) | int(45)
+            }}
+
+      - condition: template
+        value_template: >
+          {{ is_state(trigger.entity_id, 'on') }}
+
+      - action: switch.turn_off
+        target:
+          entity_id: "{{ trigger.entity_id }}"
+
+      - action: persistent_notification.create
+        data:
+          title: "Bewässerung – Sicherheitsabschaltung"
+          message: >
+            {{ trigger.to_state.name }} wurde wegen Erreichen
+            der maximal erlaubten Laufzeit abgeschaltet.
+
+    mode: parallel
+    max: 8
+
+
+  # ==========================================================
+  # KEIN DURCHFLUSS TROTZ OFFENEM VENTIL
+  # ==========================================================
+
+  - alias: "Bewässerung - Kein Durchfluss"
+    id: bewaesserung_kein_durchfluss
+
+    triggers:
+
+      - trigger: template
+        value_template: >
+          {{
+            states(
+              'sensor.bewasserung_aktive_ventile'
+            ) | int(0) > 0
+
+            and
+
+            states(
+              'sensor.bewasserung_durchfluss'
+            ) | float(0)
+
+            <
+
+            states(
+              'input_number.minimaler_durchfluss'
+            ) | float(0.5)
+          }}
+
+        for:
+          seconds: 15
+
+
+    conditions:
+
+      - condition: state
+        entity_id: input_boolean.durchflussuberwachung
+        state: "on"
+
+
+    actions:
+
+      - action: switch.turn_off
+        target:
+          entity_id:
+            - switch.bewasserung_ventil_1
+            - switch.bewasserung_ventil_2
+            - switch.bewasserung_ventil_3
+            - switch.bewasserung_ventil_4
+            - switch.bewasserung_ventil_5
+            - switch.bewasserung_ventil_6
+            - switch.bewasserung_ventil_7
+            - switch.bewasserung_ventil_8
+
+      - action: persistent_notification.create
+        data:
+          title: "Bewässerung – Kein Durchfluss"
+          message: >
+            Mindestens ein Ventil war geöffnet, aber für
+            15 Sekunden wurde kein ausreichender Durchfluss
+            erkannt. Alle Ventile wurden geschlossen.
+
+
+  # ==========================================================
+  # WASSERFLUSS TROTZ GESCHLOSSENER VENTILE
+  # ==========================================================
+
+  - alias: "Bewässerung - Unerwarteter Durchfluss"
+    id: bewaesserung_unerwarteter_durchfluss
+
+    triggers:
+
+      - trigger: template
+        value_template: >
+          {{
+            states(
+              'sensor.bewasserung_aktive_ventile'
+            ) | int(0) == 0
+
+            and
+
+            states(
+              'sensor.bewasserung_durchfluss'
+            ) | float(0)
+
+            >
+
+            states(
+              'input_number.leck_grenzwert'
+            ) | float(0.3)
+          }}
+
+        for:
+          seconds: 30
+
+
+    conditions:
+
+      - condition: state
+        entity_id: input_boolean.durchflussuberwachung
+        state: "on"
+
+
+    actions:
+
+      - action: persistent_notification.create
+        data:
+          title: "Bewässerung – Unerwarteter Durchfluss"
+          message: >
+            Es wird Wasserfluss erkannt, obwohl alle
+            Bewässerungsventile geschlossen sind.
+            Bitte Anlage auf ein Leck prüfen.
+
+
+  # ==========================================================
+  # "HEUTE ÜBERSPRINGEN" NACHTS ZURÜCKSETZEN
+  # ==========================================================
+
+  - alias: "Bewässerung - Heute überspringen zurücksetzen"
+    id: bewaesserung_heute_uberspringen_reset
+
+    triggers:
+
+      - trigger: time
+        at: "00:00:05"
+
+    actions:
+
+      - action: input_boolean.turn_off
+        target:
+          entity_id: input_boolean.heute_uberspringen
+
+
+# ============================================================
+# 8. SKRIPTE
+# ============================================================
+
+script:
+
+  # ==========================================================
+  # MANUELL BEWÄSSERN
+  # ==========================================================
+
+  bewaesserung_manuell_starten:
+
+    alias: "Bewässerung manuell starten"
+    icon: mdi:play-circle-outline
+
+    mode: single
+
+    variables:
+
+      nummer: >
+        {{
+          states('input_select.manuelles_ventil')
+          | replace('Ventil ', '')
+          | int(1)
+        }}
+
+      ventil_entity: >-
+        switch.bewasserung_ventil_{{ nummer }}
+
+      timer_entity: >-
+        timer.bewaesserung_ventil_{{ nummer }}
+
+      minuten: >
+        {{
+          [
+            states('input_select.manuelle_laufzeit') | int(15),
+            states('input_number.maximale_ventillaufzeit') | int(45)
+          ] | min
+        }}
+
+
+    sequence:
+
+      # maximale Ventilanzahl gilt auch manuell
+      - condition: template
+        value_template: >
+          {{
+            is_state(ventil_entity, 'on')
+            or
+            (
+              states('sensor.bewasserung_aktive_ventile') | int(0)
+              <
+              states('input_number.maximal_aktive_ventile') | int(3)
+            )
+          }}
+
+      - action: switch.turn_on
+        target:
+          entity_id: "{{ ventil_entity }}"
+
+      - action: timer.start
+        target:
+          entity_id: "{{ timer_entity }}"
+        data:
+          duration: >
+            {{ minuten | int * 60 }}
+
+
+  # ==========================================================
+  # ALLE VENTILE AUS
+  # ==========================================================
+
+  bewaesserung_alle_aus:
+
+    alias: "Bewässerung alle Ventile aus"
+    icon: mdi:stop-circle-outline
+
+    sequence:
+
+      - action: switch.turn_off
+        target:
+          entity_id:
+            - switch.bewasserung_ventil_1
+            - switch.bewasserung_ventil_2
+            - switch.bewasserung_ventil_3
+            - switch.bewasserung_ventil_4
+            - switch.bewasserung_ventil_5
+            - switch.bewasserung_ventil_6
+            - switch.bewasserung_ventil_7
+            - switch.bewasserung_ventil_8
+
+      - action: timer.cancel
+        target:
+          entity_id:
+            - timer.bewaesserung_ventil_1
+            - timer.bewaesserung_ventil_2
+            - timer.bewaesserung_ventil_3
+            - timer.bewaesserung_ventil_4
+            - timer.bewaesserung_ventil_5
+            - timer.bewaesserung_ventil_6
+            - timer.bewaesserung_ventil_7
+            - timer.bewaesserung_ventil_8

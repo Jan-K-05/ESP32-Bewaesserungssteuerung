@@ -1,0 +1,4 @@
+(fp_lib_table
+	(version 7)
+	(lib (name "FireBeetle_DFR0654") (type "KiCad") (uri "${KIPRJMOD}/FireBeetle_DFR0654.pretty") (options "") (descr ""))
+)
